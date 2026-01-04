@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ورود به حساب</title>
+    <link rel="stylesheet" href="/src/output.css" />
+  </head>
+
+  <body
+    class="bg-[#f5e9d8] min-h-screen flex items-center justify-center p-4 font-[Vazirmatn]"
+  >
+    <div
+      class="backdrop-blur-xl bg-white/40 border border-white/50 shadow-2xl rounded-3xl p-6 sm:p-8 md:p-10 w-full max-w-[420px] transition-all duration-300"
+    >
+      <div class="text-center mb-8">
+        <h2 class="text-2xl sm:text-3xl font-black text-[#5c3d1e] mb-2">
+          خوش آمدید
+        </h2>
+        <p class="text-sm sm:text-base text-[#5c3d1e]/70 leading-relaxed">
+          لطفاً اطلاعات حساب خود را وارد کنید
+        </p>
+      </div>
+
+      <form class="space-y-5">
+        <div class="space-y-1.5">
+          <label
+            class="block text-[#5c3d1e] font-bold text-sm sm:text-base mr-1"
+          >
+            ایمیل
+          </label>
+          <input
+            type="email"
+            class="w-full p-3 sm:p-3.5 rounded-xl border border-[#8b5e34]/20 bg-white/60 focus:bg-white focus:ring-2 focus:ring-[#8b5e34]/30 focus:outline-none transition-all placeholder:text-gray-400"
+            placeholder="example@mail.com"
+          />
+        </div>
+
+        <div class="space-y-1.5">
+          <label
+            class="block text-[#5c3d1e] font-bold text-sm sm:text-base mr-1"
+          >
+            رمز عبور
+          </label>
+          <input
+            type="password"
+            class="w-full p-3 sm:p-3.5 rounded-xl border border-[#8b5e34]/20 bg-white/60 focus:bg-white focus:ring-2 focus:ring-[#8b5e34]/30 focus:outline-none transition-all placeholder:text-gray-400"
+            placeholder="••••••••"
+          />
+          <a
+            href="#"
+            class="inline-block text-xs text-[#8b5e34] hover:underline mt-1 mr-1"
+          >
+            فراموشی رمز عبور؟
+          </a>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-[#8b5e34] hover:bg-[#6e4829] text-white py-3 sm:py-4 rounded-xl text-base sm:text-lg font-bold shadow-lg shadow-[#8b5e34]/20 transition-all transform hover:scale-[1.01] active:scale-95"
+        >
+          ورود به حساب
+        </button>
+      </form>
+
+      <div class="relative my-8">
+        <div class="absolute inset-0 flex items-center">
+          <div class="w-full border-t border-[#5c3d1e]/10"></div>
+        </div>
+        <div class="relative flex justify-center text-xs uppercase">
+          <span class="bg-[#f2e4d0] px-2 text-[#5c3d1e]/50">یا ورود با</span>
+        </div>
+      </div>
+
+      <button
+        class="w-full bg-white/50 hover:bg-white text-[#5c3d1e] py-3 rounded-xl font-bold border border-[#5c3d1e]/10 flex items-center justify-center gap-3 transition-all"
+      >
+        <span class="text-sm sm:text-base">حساب گوگل</span>
+      </button>
+
+      <p class="mt-8 text-center text-[#5c3d1e]/80 text-sm sm:text-base">
+        هنوز عضو نشده‌اید؟
+        <a href="#" class="text-[#8b5e34] font-black hover:underline mr-1"
+          >ساخت حساب</a
+        >
+      </p>
+    </div>
+  </body>
+</html>

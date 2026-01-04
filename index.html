@@ -1,0 +1,3407 @@
+<!doctype html>
+<html lang="fa">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BookShop</title>
+
+    <link rel="stylesheet" href="/src/output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+  </head>
+
+  <body
+    class="bg-[#f5e9d8] min-h-screen font-[Vazirmatn] min-h-screen flex flex-col items-center"
+  >
+    <!-- Navbar Start -->
+    <div
+      class="border border-black bg-black w-full p-5 flex items-center justify-between gap-4"
+    >
+      <!-- Left Icons -->
+
+      <div class="flex items-center gap-4 text-white shrink-0">
+        <a
+          href="/login.html"
+          class="flex items-center translate-y-[-4px] cursor-pointer"
+          >ورود</a
+        >
+
+        <!-- سبد خرید با لینک cart.html -->
+        <a href="cart.html" class="flex items-center relative cursor-pointer">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="white"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 
+                      1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 
+                      1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 
+                      5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007Z"
+            />
+          </svg>
+
+          <span
+            id="cart-count"
+            class="absolute -top-2 right-4 w-4 h-4 bg-red-700 text-white text-[10px] rounded-full flex items-center justify-center"
+          >
+            0
+          </span>
+        </a>
+        <!-- آیکون قلب برای علاقه‌مندی‌ها با لینک favorites.html -->
+
+        <a href="favorites.html" class="flex items-center cursor-pointer">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 
+                      0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733
+                      C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+            />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Search (center) -->
+      <div class="flex-1 flex justify-center max-w-3xl">
+        <div class="flex items-center bg-white rounded-full px-4 py-2 w-full">
+          <input
+            type="search"
+            class="w-full bg-transparent focus:outline-none text-right px-2"
+            placeholder="جستجوی محصول"
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6 text-gray-500"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 
+                      5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Desktop Menu + Mobile Hamburger -->
+      <div class="text-white shrink-0">
+        <!-- Desktop Menu -->
+        <div class="hidden min-[1162px]:flex items-center gap-6">
+          <a href="#" class="hover:text-gray-300">تماس باما</a>
+          <a href="#" class="hover:text-gray-300">کنارکتاب</a>
+          <a href="#" class="hover:text-gray-300">صنایع دستی</a>
+          <a href="#" class="hover:text-gray-300 whitespace-nowrap"
+            >سرگرمی و خلاقیت</a
+          >
+          <a href="#" class="hover:text-gray-300">نوشت افزار</a>
+          <a href="#" class="hover:text-gray-300">کودک و نوجوان</a>
+          <a href="#" class="hover:text-gray-300">کتاب</a>
+        </div>
+
+        <!-- Hamburger (Mobile) -->
+        <div id="menuBtn" class="flex min-[1162px]:hidden cursor-pointer">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <!-- Navbar End -->
+
+    <!-- Mobile Menu (Slide from Right) -->
+    <div
+      id="mobileMenu"
+      class="fixed top-0 right-0 w-64 h-full bg-black text-white p-6 space-y-6 translate-x-full transition-transform duration-300 z-50"
+    >
+      <button id="closeMenu" class="text-white text-3xl mb-4">×</button>
+
+      <a href="#" class="block hover:text-gray-300">کتاب</a>
+      <a href="#" class="block hover:text-gray-300">کودک و نوجوان</a>
+      <a href="#" class="block hover:text-gray-300">نوشت افزار</a>
+      <a href="#" class="block hover:text-gray-300">سرگرمی و خلاقیت</a>
+      <a href="#" class="block hover:text-gray-300">صنایع دستی</a>
+      <a href="#" class="block hover:text-gray-300">کنارکتاب</a>
+      <a href="#" class="block hover:text-gray-300">تماس باما</a>
+    </div>
+
+    <!-- Container Start -->
+    <div
+      class="w-full mx-auto mt-6 px-4 md:px-6 transition-all duration-500 max-w-[1200px] min-[1600px]:max-w-[1550px] min-[2000px]:max-w-[1900px] min-[2500px]:max-w-[2300px]"
+    >
+      <div
+        class="swiper mySwiper w-full rounded-2xl overflow-hidden shadow-2xl h-[250px] md:h-[400px] min-[1600px]:h-[500px] min-[2000px]:h-[650px] min-[2500px]:h-[800px]"
+      >
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img
+              class="w-full h-full object-cover"
+              src="/src/images/بهرام بیضایی.webp"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              class="w-full h-full object-cover"
+              src="/src/images/فروغ فرخزاد.webp"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              class="w-full h-full object-cover"
+              src="/src/images/شجریان.webp"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              class="w-full h-full object-cover"
+              src="/src/images/جستار.webp"
+            />
+          </div>
+        </div>
+
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+    <!-- Container End -->
+
+    <script src="main.js"></script>
+
+    <div
+      class="w-full mx-auto mt-10 px-4 md:px-6 transition-all duration-500 max-w-[1200px] min-[1600px]:max-w-[1550px] min-[2000px]:max-w-[1900px]"
+    >
+      <!--پر فروش های کتاب شروع-->
+      <div
+        class="flex flex-col-reverse md:flex-row justify-between items-center mb-6 gap-4"
+      >
+        <a
+          class="text-blue-600 text-sm md:text-base font-semibold hover:underline"
+        >
+          مشاهده بیشتر ←
+        </a>
+        <h2 class="text-xl md:text-2xl font-bold text-gray-800">
+          پر فروش های کتاب
+        </h2>
+      </div>
+
+      <div class="swiper bestsellerSwiper flex">
+        <div class="swiper-wrapper">
+          <!-- کارت کتاب -->
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="138066">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/138066.webp"
+                  alt="مغازه خودکشی"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">مغازه خودکشی</h3>
+                <p class="text-xs text-gray-600">ژان تولی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="مغازه خودکشی"
+                  data-price="230.000"
+                  data-id="138066"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+
+          <!-- کارت دوم -->
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="138066">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/34766.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">شب های روشن</h3>
+                <p class="text-xs text-gray-600">فئودور داستایفسکی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="شب های روشن"
+                  data-price="230.000"
+                  data-id="34766"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-667159">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-667159.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">میراث</h3>
+                <p class="text-xs text-gray-600">تریشا ساخلچا</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="میراث"
+                  data-price="230.000"
+                  data-id="A-667159"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="33820">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/33820.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">
+                  قصه های خوب برای بچه های خوب
+                </h3>
+                <p class="text-xs text-gray-600">مهدی آذریزدی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="قصه های خوب برای بچه های خوب"
+                  data-price="230.000"
+                  data-id="33820"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-398427">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-398427.webp"
+                  alt="قصه های خوب برای بچه های خوب"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">تاملات سینمایی</h3>
+                <p class="text-xs text-gray-600">کوئنتین تارنتینو</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="تاملات سینمایی"
+                  data-price="230.000"
+                  data-id="A-398427"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="164496">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/164496.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">هتل آنایورت</h3>
+                <p class="text-xs text-gray-600">یوسف آتیلگان</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="هتل آنایورت"
+                  data-price="230.000"
+                  data-id="164496"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="34766">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/34766.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">شب های روشن</h3>
+                <p class="text-xs text-gray-600">فئودور داستایفسکی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="شب های روشن"
+                  data-price="230.000"
+                  data-id="34766"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-667159">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-667159.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">میراث</h3>
+                <p class="text-xs text-gray-600">تریشا ساخلچا</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="میراث"
+                  data-price="230.000"
+                  data-id="A-667159"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="33820">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/33820.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">
+                  قصه های خوب برای بچه های خوب
+                </h3>
+                <p class="text-xs text-gray-600">مهدی آذریزدی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="قصه های خوب برای بچه های خوب"
+                  data-price="230.000"
+                  data-id="33820"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-398427">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-398427.webp"
+                  alt="قصه های خوب برای بچه های خوب"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">تاملات سینمایی</h3>
+                <p class="text-xs text-gray-600">کوئنتین تارنتینو</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="تاملات سینمایی"
+                  data-price="230.000"
+                  data-id="A-398427"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="164496">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/164496.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">هتل آنایورت</h3>
+                <p class="text-xs text-gray-600">یوسف آتیلگان</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="هتل آنایورت"
+                  data-price="230.000"
+                  data-id="164496"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="34766">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/34766.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">شب های روشن</h3>
+                <p class="text-xs text-gray-600">فئودور داستایفسکی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="شب های روشن"
+                  data-price="230.000"
+                  data-id="34766"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-667159">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-667159.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">میراث</h3>
+                <p class="text-xs text-gray-600">تریشا ساخلچا</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="میراث"
+                  data-price="230.000"
+                  data-id="A-667159"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="33820">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/33820.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">
+                  قصه های خوب برای بچه های خوب
+                </h3>
+                <p class="text-xs text-gray-600">مهدی آذریزدی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="قصه های خوب برای بچه های خوب"
+                  data-price="230.000"
+                  data-id="33820"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-398427">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-398427.webp"
+                  alt="قصه های خوب برای بچه های خوب"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">تاملات سینمایی</h3>
+                <p class="text-xs text-gray-600">کوئنتین تارنتینو</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="تاملات سینمایی"
+                  data-price="230.000"
+                  data-id="A-398427"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="164496">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/164496.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">هتل آنایورت</h3>
+                <p class="text-xs text-gray-600">یوسف آتیلگان</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="هتل آنایورت"
+                  data-price="230.000"
+                  data-id="164496"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="34766">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-667159.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">میراث</h3>
+                <p class="text-xs text-gray-600">تریشا ساخلچا</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="میراث"
+                  data-price="230.000"
+                  data-id="A-667159"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- کنترل‌ها -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+    <!--پر فروش های کتاب اتمام-->
+
+    <!--تازه های کتاب نوجوان-->
+    <div
+      class="w-full mx-auto mt-10 px-4 md:px-6 transition-all duration-500 max-w-[1200px] min-[1600px]:max-w-[1550px] min-[2000px]:max-w-[1900px]"
+    >
+      <!--پر فروش های کتاب شروع-->
+      <div
+        class="flex flex-col-reverse md:flex-row justify-between items-center mb-6 gap-4"
+      >
+        <a
+          class="text-blue-600 text-sm md:text-base font-semibold hover:underline"
+        >
+          مشاهده بیشتر ←
+        </a>
+        <h2 class="text-xl md:text-2xl font-bold text-gray-800">
+          تازه های کتاب نوجوان
+        </h2>
+      </div>
+
+      <div class="swiper bestsellerSwiper flex">
+        <div class="swiper-wrapper">
+          <!-- کارت کتاب -->
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-701689">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-701689.webp"
+                  alt="در ممنوعه"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">در ممنوعه</h3>
+                <p class="text-xs text-gray-600">فریدا مک فادن</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="در ممنوعه"
+                  data-price="230.000"
+                  data-id="A-701689"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+
+          <!-- کارت دوم -->
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-529417">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-529417.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">در پس آینه</h3>
+                <p class="text-xs text-gray-600"></p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="در پس آینه"
+                  data-price="230.000"
+                  data-id="A-529417"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-529417">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-672737.webp"
+                  alt="آرتور رمبو"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">آرتور رمبو</h3>
+                <p class="text-xs text-gray-600"></p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="میراث"
+                  data-price="230.000"
+                  data-id="A-672737"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="33820">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/33820.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">
+                  قصه های خوب برای بچه های خوب
+                </h3>
+                <p class="text-xs text-gray-600">مهدی آذریزدی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="قصه های خوب برای بچه های خوب"
+                  data-price="230.000"
+                  data-id="33820"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-398427">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-398427.webp"
+                  alt="قصه های خوب برای بچه های خوب"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">تاملات سینمایی</h3>
+                <p class="text-xs text-gray-600">کوئنتین تارنتینو</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="تاملات سینمایی"
+                  data-price="230.000"
+                  data-id="A-398427"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="164496">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/164496.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">هتل آنایورت</h3>
+                <p class="text-xs text-gray-600">یوسف آتیلگان</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="هتل آنایورت"
+                  data-price="230.000"
+                  data-id="164496"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="34766">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/34766.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">شب های روشن</h3>
+                <p class="text-xs text-gray-600">فئودور داستایفسکی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="شب های روشن"
+                  data-price="230.000"
+                  data-id="34766"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-667159">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-667159.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">میراث</h3>
+                <p class="text-xs text-gray-600">تریشا ساخلچا</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="میراث"
+                  data-price="230.000"
+                  data-id="A-667159"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="33820">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/33820.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">
+                  قصه های خوب برای بچه های خوب
+                </h3>
+                <p class="text-xs text-gray-600">مهدی آذریزدی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="قصه های خوب برای بچه های خوب"
+                  data-price="230.000"
+                  data-id="33820"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-398427">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-398427.webp"
+                  alt="قصه های خوب برای بچه های خوب"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">تاملات سینمایی</h3>
+                <p class="text-xs text-gray-600">کوئنتین تارنتینو</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="تاملات سینمایی"
+                  data-price="230.000"
+                  data-id="A-398427"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="164496">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/164496.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">هتل آنایورت</h3>
+                <p class="text-xs text-gray-600">یوسف آتیلگان</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="هتل آنایورت"
+                  data-price="230.000"
+                  data-id="164496"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="34766">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/34766.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">شب های روشن</h3>
+                <p class="text-xs text-gray-600">فئودور داستایفسکی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="شب های روشن"
+                  data-price="230.000"
+                  data-id="34766"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-667159">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-667159.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">میراث</h3>
+                <p class="text-xs text-gray-600">تریشا ساخلچا</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="میراث"
+                  data-price="230.000"
+                  data-id="A-667159"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="33820">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/33820.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">
+                  قصه های خوب برای بچه های خوب
+                </h3>
+                <p class="text-xs text-gray-600">مهدی آذریزدی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="قصه های خوب برای بچه های خوب"
+                  data-price="230.000"
+                  data-id="33820"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-398427">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-398427.webp"
+                  alt="قصه های خوب برای بچه های خوب"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">تاملات سینمایی</h3>
+                <p class="text-xs text-gray-600">کوئنتین تارنتینو</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="تاملات سینمایی"
+                  data-price="230.000"
+                  data-id="A-398427"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="164496">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/164496.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">هتل آنایورت</h3>
+                <p class="text-xs text-gray-600">یوسف آتیلگان</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="هتل آنایورت"
+                  data-price="230.000"
+                  data-id="164496"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-667159">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-667159.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">میراث</h3>
+                <p class="text-xs text-gray-600">تریشا ساخلچا</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="میراث"
+                  data-price="230.000"
+                  data-id="A-667159"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- کنترل‌ها -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+    <!--پر فروش های کتاب اتمام-->
+
+    <!--پیشنهاد کتابفروش-->
+    <div
+      class="w-full mx-auto mt-10 px-4 md:px-6 transition-all duration-500 max-w-[1200px] min-[1600px]:max-w-[1550px] min-[2000px]:max-w-[1900px]"
+    >
+      <div
+        class="flex flex-col-reverse md:flex-row justify-between items-center mb-6 gap-4"
+      >
+        <a
+          class="text-blue-600 text-sm md:text-base font-semibold hover:underline"
+        >
+          مشاهده بیشتر ←
+        </a>
+        <h2 class="text-xl md:text-2xl font-bold text-gray-800">
+          پیشنهاد کتابفروش
+        </h2>
+      </div>
+
+      <div class="swiper bestsellerSwiper flex">
+        <div class="swiper-wrapper">
+          <!-- کارت کتاب -->
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="138066">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/138066.webp"
+                  alt="مغازه خودکشی"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">مغازه خودکشی</h3>
+                <p class="text-xs text-gray-600">ژان تولی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="مغازه خودکشی"
+                  data-price="230.000"
+                  data-id="138066"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+
+          <!-- کارت دوم -->
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="34766">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/34766.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">شب های روشن</h3>
+                <p class="text-xs text-gray-600">فئودور داستایفسکی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="شب های روشن"
+                  data-price="230.000"
+                  data-id="34766"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-667159">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-667159.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">میراث</h3>
+                <p class="text-xs text-gray-600">تریشا ساخلچا</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="میراث"
+                  data-price="230.000"
+                  data-id="A-667159"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="33820">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/33820.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">
+                  قصه های خوب برای بچه های خوب
+                </h3>
+                <p class="text-xs text-gray-600">مهدی آذریزدی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="قصه های خوب برای بچه های خوب"
+                  data-price="230.000"
+                  data-id="33820"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-398427">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-398427.webp"
+                  alt="قصه های خوب برای بچه های خوب"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">تاملات سینمایی</h3>
+                <p class="text-xs text-gray-600">کوئنتین تارنتینو</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="تاملات سینمایی"
+                  data-price="230.000"
+                  data-id="A-398427"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="164496">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/164496.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">هتل آنایورت</h3>
+                <p class="text-xs text-gray-600">یوسف آتیلگان</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="هتل آنایورت"
+                  data-price="230.000"
+                  data-id="164496"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="34766">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/34766.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">شب های روشن</h3>
+                <p class="text-xs text-gray-600">فئودور داستایفسکی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="شب های روشن"
+                  data-price="230.000"
+                  data-id="34766"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-667159">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-667159.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">میراث</h3>
+                <p class="text-xs text-gray-600">تریشا ساخلچا</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="میراث"
+                  data-price="230.000"
+                  data-id="A-667159"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="33820">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/33820.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">
+                  قصه های خوب برای بچه های خوب
+                </h3>
+                <p class="text-xs text-gray-600">مهدی آذریزدی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="قصه های خوب برای بچه های خوب"
+                  data-price="230.000"
+                  data-id="33820"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-398427">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-398427.webp"
+                  alt="قصه های خوب برای بچه های خوب"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">تاملات سینمایی</h3>
+                <p class="text-xs text-gray-600">کوئنتین تارنتینو</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="تاملات سینمایی"
+                  data-price="230.000"
+                  data-id="A-398427"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="164496">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/164496.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">هتل آنایورت</h3>
+                <p class="text-xs text-gray-600">یوسف آتیلگان</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="هتل آنایورت"
+                  data-price="230.000"
+                  data-id="164496"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="34766">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/34766.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">شب های روشن</h3>
+                <p class="text-xs text-gray-600">فئودور داستایفسکی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="شب های روشن"
+                  data-price="230.000"
+                  data-id="34766"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-667159">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-667159.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">میراث</h3>
+                <p class="text-xs text-gray-600">تریشا ساخلچا</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="میراث"
+                  data-price="230.000"
+                  data-id="A-667159"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="33820">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/33820.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">
+                  قصه های خوب برای بچه های خوب
+                </h3>
+                <p class="text-xs text-gray-600">مهدی آذریزدی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="قصه های خوب برای بچه های خوب"
+                  data-price="230.000"
+                  data-id="33820"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-398427">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-398427.webp"
+                  alt="قصه های خوب برای بچه های خوب"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">تاملات سینمایی</h3>
+                <p class="text-xs text-gray-600">کوئنتین تارنتینو</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="تاملات سینمایی"
+                  data-price="230.000"
+                  data-id="A-398427"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="164496">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/164496.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">هتل آنایورت</h3>
+                <p class="text-xs text-gray-600">یوسف آتیلگان</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="هتل آنایورت"
+                  data-price="230.000"
+                  data-id="164496"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="34766">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-667159.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">میراث</h3>
+                <p class="text-xs text-gray-600">تریشا ساخلچا</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="میراث"
+                  data-price="230.000"
+                  data-id="A-667159"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- کنترل‌ها -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+    <!--پر فروش های کتاب اتمام-->
+
+    <!--بنر وسط -->
+    <div
+      class="w-full mx-auto mt-16 px-4 md:px-6 transition-all duration-500 max-w-[1200px] min-[1600px]:max-w-[1550px] min-[2000px]:max-w-[1900px]"
+    >
+      <div
+        class="relative w-full overflow-hidden rounded-3xl shadow-xl bg-gradient-to-r from-[#D7CCC8] via-[#F5F5DC] to-[#EFEBE9] min-h-[250px] md:min-h-[350px] lg:min-h-[400px] flex flex-col md:flex-row items-center justify-between p-8 md:p-12 border border-[#BCAAA4]/30"
+      >
+        <div
+          class="relative z-10 w-full md:w-1/2 flex justify-center items-center transform hover:scale-105 transition-transform duration-500"
+        >
+          <img
+            src="/src/images/شجریان.webp"
+            alt="اولین لمس داستان"
+            class="w-full h-50 rounded-xl max-w-[300px] md:max-w-[450px] lg:max-w-[550px] drop-shadow-[0_20px_50px_rgba(93,64,55,0.3)]"
+          />
+        </div>
+
+        <div
+          class="w-full md:w-1/2 flex flex-col items-center md:items-end text-center md:text-right mt-8 md:mt-0 z-10"
+        >
+          <h2
+            class="text-2xl md:text-3xl lg:text-4xl font-serif font-black text-[#4E342E] leading-tight"
+          >
+            برای ماجراجویی در دنیای کتاب‌ها آماده‌اید؟
+          </h2>
+
+          <div class="mt-6 flex flex-col items-center md:items-end gap-2">
+            <div class="flex items-center gap-2">
+              <span class="text-xl md:text-2xl font-bold text-[#5D4037]"
+                >BookCity</span
+              >
+              <div
+                class="flex flex-col leading-none border-r border-[#5D4037] pr-2 mr-2"
+              >
+                <span class="text-lg md:text-xl font-medium text-[#795548]"
+                  >Online</span
+                >
+              </div>
+            </div>
+            <a
+              href="https://google.com"
+              class="text-sm md:text-base text-[#8D6E63] hover:text-[#4E342E] transition-colors tracking-widest font-mono"
+            >
+              Danishop.com
+            </a>
+          </div>
+
+          <button
+            class="mt-8 px-10 py-3 bg-[#5D4037] text-[#F5F5DC] font-bold rounded-xl shadow-lg hover:bg-[#4E342E] transition-all transform hover:-translate-y-1 active:scale-95 border-b-4 border-[#3E2723]"
+          >
+            مشاهده محصولات
+          </button>
+        </div>
+
+        <div
+          class="absolute top-[-10%] left-[-5%] w-64 h-64 bg-[#BCAAA4]/20 rounded-full blur-3xl"
+        ></div>
+        <div
+          class="absolute bottom-[-10%] right-[-5%] w-80 h-80 bg-[#A1887F]/20 rounded-full blur-3xl"
+        ></div>
+
+        <div
+          class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/paper.png')]"
+        ></div>
+      </div>
+    </div>
+
+    <!--محبوب ترین ها-->
+    <div
+      class="w-full mx-auto mt-10 px-4 md:px-6 transition-all duration-500 max-w-[1200px] min-[1600px]:max-w-[1550px] min-[2000px]:max-w-[1900px]"
+    >
+      <div
+        class="flex flex-col-reverse md:flex-row justify-between items-center mb-6 gap-4"
+      >
+        <a
+          class="text-blue-600 text-sm md:text-base font-semibold hover:underline"
+        >
+          مشاهده بیشتر ←
+        </a>
+        <h2 class="text-xl md:text-2xl font-bold text-gray-800">
+          محبوب ترین ها
+        </h2>
+      </div>
+
+      <div class="swiper bestsellerSwiper flex">
+        <div class="swiper-wrapper">
+          <!-- کارت کتاب -->
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="138066">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/138066.webp"
+                  alt="مغازه خودکشی"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">مغازه خودکشی</h3>
+                <p class="text-xs text-gray-600">ژان تولی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="مغازه خودکشی"
+                  data-price="230.000"
+                  data-id="138066"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+
+          <!-- کارت دوم -->
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="164496">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/34766.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">شب های روشن</h3>
+                <p class="text-xs text-gray-600">فئودور داستایفسکی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="شب های روشن"
+                  data-price="230.000"
+                  data-id="34766"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-667159">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-667159.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">میراث</h3>
+                <p class="text-xs text-gray-600">تریشا ساخلچا</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="میراث"
+                  data-price="230.000"
+                  data-id="A-667159"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="33820">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/33820.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">
+                  قصه های خوب برای بچه های خوب
+                </h3>
+                <p class="text-xs text-gray-600">مهدی آذریزدی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="قصه های خوب برای بچه های خوب"
+                  data-price="230.000"
+                  data-id="33820"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-398427">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-398427.webp"
+                  alt="قصه های خوب برای بچه های خوب"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">تاملات سینمایی</h3>
+                <p class="text-xs text-gray-600">کوئنتین تارنتینو</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="تاملات سینمایی"
+                  data-price="230.000"
+                  data-id="A-398427"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="164496">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/164496.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">هتل آنایورت</h3>
+                <p class="text-xs text-gray-600">یوسف آتیلگان</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="هتل آنایورت"
+                  data-price="230.000"
+                  data-id="164496"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="34766">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/34766.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">شب های روشن</h3>
+                <p class="text-xs text-gray-600">فئودور داستایفسکی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="شب های روشن"
+                  data-price="230.000"
+                  data-id="34766"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-667159">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-667159.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">میراث</h3>
+                <p class="text-xs text-gray-600">تریشا ساخلچا</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="میراث"
+                  data-price="230.000"
+                  data-id="A-667159"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="33820">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/33820.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">
+                  قصه های خوب برای بچه های خوب
+                </h3>
+                <p class="text-xs text-gray-600">مهدی آذریزدی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="قصه های خوب برای بچه های خوب"
+                  data-price="230.000"
+                  data-id="33820"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-398427">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-398427.webp"
+                  alt="قصه های خوب برای بچه های خوب"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">تاملات سینمایی</h3>
+                <p class="text-xs text-gray-600">کوئنتین تارنتینو</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="تاملات سینمایی"
+                  data-price="230.000"
+                  data-id="A-398427"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="164496">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/164496.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">هتل آنایورت</h3>
+                <p class="text-xs text-gray-600">یوسف آتیلگان</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="هتل آنایورت"
+                  data-price="230.000"
+                  data-id="164496"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="34766">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/34766.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">شب های روشن</h3>
+                <p class="text-xs text-gray-600">فئودور داستایفسکی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="شب های روشن"
+                  data-price="230.000"
+                  data-id="34766"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-667159">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-667159.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">میراث</h3>
+                <p class="text-xs text-gray-600">تریشا ساخلچا</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="میراث"
+                  data-price="230.000"
+                  data-id="A-667159"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="33820">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/33820.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">
+                  قصه های خوب برای بچه های خوب
+                </h3>
+                <p class="text-xs text-gray-600">مهدی آذریزدی</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="قصه های خوب برای بچه های خوب"
+                  data-price="230.000"
+                  data-id="33820"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="A-398427">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-398427.webp"
+                  alt="قصه های خوب برای بچه های خوب"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">تاملات سینمایی</h3>
+                <p class="text-xs text-gray-600">کوئنتین تارنتینو</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="تاملات سینمایی"
+                  data-price="230.000"
+                  data-id="A-398427"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="164496">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/164496.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">هتل آنایورت</h3>
+                <p class="text-xs text-gray-600">یوسف آتیلگان</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="هتل آنایورت"
+                  data-price="230.000"
+                  data-id="164496"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="swiper-slide">
+            <article
+              class="group rounded-xl overflow-hidden bg-white hover:shadow flex flex-col items-center p-3 w-[320px] h-[320px]"
+            >
+              <button class="add-to-fav text-red-500" data-id="34766">
+                <i class="fa-solid fa-heart"></i>
+              </button>
+              <!-- بخش عکس -->
+              <div
+                class="w-[160px] h-[220px] overflow-hidden rounded-md bg-gray-100"
+              >
+                <img
+                  src="/src/images/Bestsellerbooks/A-667159.webp"
+                  alt="بیمار خاموش"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <!-- متن‌ها -->
+              <div class="mt-2 text-center">
+                <h3 class="font-semibold text-sm">میراث</h3>
+                <p class="text-xs text-gray-600">تریشا ساخلچا</p>
+                <div
+                  class="mt-2 flex items-center justify-center gap-2 text-xs"
+                >
+                  <span class="font-bold">230.000</span>
+                  <span class="text-gray-500 line-through">300.000</span>
+                  <span class="text-green-600 bg-green-50 px-2 py-0.5 rounded"
+                    >٪۳۲ تخفیف</span
+                  >
+                </div>
+                <button
+                  class="mt-3 w-full border rounded-md py-1.5 text-xs add-to-cart"
+                  data-title="میراث"
+                  data-price="230.000"
+                  data-id="A-667159"
+                >
+                  افزودن به سبد
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- کنترل‌ها -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+    <!--پر فروش های کتاب اتمام-->
+    <!--Footer-->
+    <div class="w-full bg-[#1a1a1a] py-16 mt-20">
+      <div
+        class="w-full mx-auto px-4 md:px-6 transition-all duration-500 max-w-[1200px] min-[1600px]:max-w-[1550px] min-[2000px]:max-w-[1900px]"
+      >
+        <div class="flex flex-col items-center text-center">
+          <h2 class="text-white text-xl md:text-2xl font-bold mb-4">خبرنامه</h2>
+
+          <p class="text-gray-400 text-sm md:text-base mb-10">
+            به خبرنامه ما بپیوندید از طریق باکس زیر
+          </p>
+
+          <form class="w-full max-w-2xl relative">
+            <div
+              class="relative flex items-center border-b border-gray-700 focus-within:border-blue-500 transition-colors pb-2"
+            >
+              <button
+                type="submit"
+                class="text-blue-500 hover:text-blue-400 font-bold text-sm md:text-base transition-colors px-4"
+              >
+                عضویت
+              </button>
+
+              <input
+                type="email"
+                placeholder="ایمیل خود را وارد کنید"
+                dir="rtl"
+                class="w-full bg-transparent border-none text-gray-300 placeholder-gray-500 focus:ring-0 text-sm md:text-base pr-4 py-2"
+                required
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        centeredSlides: true,
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        breakpoints: {
+          // تنظیمات برای مانیتورهای بزرگ
+          1600: {
+            slidesPerView: 1, // یا اگر دوست دارید دو تا کنار هم باشند: 1.1
+            spaceBetween: 30,
+          },
+        },
+      });
+    </script>
+    <script>
+      new Swiper(".bestsellerSwiper", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".bestsellerSwiper .swiper-pagination",
+          clickable: true,
+          dynamicBullets: true,
+        },
+        navigation: {
+          nextEl: ".bestsellerSwiper .swiper-button-next",
+          prevEl: ".bestsellerSwiper .swiper-button-prev",
+        },
+        breakpoints: {
+          // از 0 تا 557 (تک ستونی)
+          558: {
+            slidesPerView: 2,
+            centeredSlides: false,
+            spaceBetween: 20,
+          },
+          // از 763 تا 996 (سه ستونی)
+          763: {
+            slidesPerView: 3,
+            centeredSlides: false,
+            spaceBetween: 25,
+          },
+          // از 997 به بالا (چهار ستونی)
+          997: {
+            slidesPerView: 4,
+            centeredSlides: false,
+            spaceBetween: 30,
+          },
+        },
+      });
+    </script>
+
+    <style>
+      .bestsellerSwiper {
+        padding-bottom: 50px !important;
+        position: relative;
+      }
+
+      .bestsellerSwiper .swiper-pagination {
+        bottom: 10px !important;
+      }
+
+      .bestsellerSwiper .swiper-pagination-bullet-active {
+        background: #2563eb !important;
+        width: 20px !important;
+        border-radius: 5px !important;
+      }
+    </style>
+
+    <div
+      id="toast"
+      class="fixed bottom-5 right-5 bg-black text-white px-4 py-2 rounded-lg shadow-lg opacity-0 pointer-events-none transition-all duration-300 z-50"
+    ></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    <canvas
+      id="snowCanvas"
+      style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+      "
+    ></canvas>
+
+    <script>
+      (function () {
+        const canvas = document.getElementById("snowCanvas");
+        const ctx = canvas.getContext("2d");
+        let particles = [];
+
+        function resize() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener("resize", resize);
+        resize();
+
+        class Snowflake {
+          constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 3 + 1;
+            this.speed = Math.random() * 1 + 0.5;
+            this.opacity = Math.random() * 0.8;
+          }
+
+          update() {
+            this.y += this.speed;
+            if (this.y > canvas.height) {
+              this.y = -10;
+              this.x = Math.random() * canvas.width;
+            }
+          }
+
+          draw() {
+            ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        function createSnow() {
+          for (let i = 0; i < 150; i++) {
+            particles.push(new Snowflake());
+          }
+        }
+
+        function animate() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          particles.forEach((p) => {
+            p.update();
+            p.draw();
+          });
+          requestAnimationFrame(animate);
+        }
+
+        createSnow();
+        animate();
+      })();
+    </script>
+    <script src="/main.js"></script>
+  </body>
+</html>
