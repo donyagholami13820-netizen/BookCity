@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>سبد خرید حرفه‌ای</title>
+    <link rel="stylesheet" href="/src/output.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;400;700;900&display=swap");
+      body {
+        font-family: "Vazirmatn", sans-serif;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-[#f5e9d8] min-h-screen text-[#5c3d1e] selection:bg-[#8b5e34] selection:text-white"
+  >
+    <div class="container mx-auto px-4 py-8 lg:py-16 max-w-7xl">
+      <header class="mb-10 lg:mb-16 text-center lg:text-right">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight">
+          سبد خرید <span class="text-[#8b5e34] opacity-80">شما</span>
+        </h1>
+        <p class="mt-2 text-sm sm:text-base opacity-70">
+          محصولات مورد نظر خود را بررسی و نهایی کنید.
+        </p>
+      </header>
+
+      <div class="flex flex-col lg:flex-row gap-8 items-start">
+        <div
+          id="cart-items"
+          class="w-full lg:flex-1 space-y-4 order-2 lg:order-1"
+        >
+          <div
+            class="bg-white/60 backdrop-blur-md p-4 rounded-2xl border border-white/50 flex items-center gap-4 shadow-sm hover:shadow-md transition-all group"
+          >
+            <div
+              class="w-20 h-20 sm:w-24 sm:h-24 bg-[#e9dcc9] rounded-xl flex-shrink-0 overflow-hidden"
+            >
+              <img
+                src="https://via.placeholder.com/150"
+                alt="product"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div
+              class="flex-1 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+            >
+              <div class="flex items-center gap-4">
+                <div
+                  class="flex items-center bg-white/80 rounded-lg border border-gray-200 p-1 shadow-inner"
+                >
+                  <button
+                    class="w-8 h-8 flex items-center justify-center hover:bg-gray-100 rounded-md transition"
+                  >
+                    +
+                  </button>
+                  <span class="px-3 font-bold">۱</span>
+                  <button
+                    class="w-8 h-8 flex items-center justify-center hover:bg-gray-100 rounded-md transition"
+                  >
+                    -
+                  </button>
+                </div>
+                <span class="font-extrabold text-[#8b5e34]">۴۵۰,۰۰۰ ت</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside
+          class="w-full lg:w-[400px] order-1 lg:order-2 lg:sticky lg:top-8"
+        >
+          <div
+            class="backdrop-blur-2xl bg-white/40 border border-white/60 shadow-2xl rounded-[2rem] p-6 lg:p-8 relative overflow-hidden"
+          >
+            <div
+              class="absolute -top-10 -left-10 w-32 h-32 bg-[#8b5e34]/5 rounded-full blur-3xl"
+            ></div>
+
+            <h2 class="text-xl font-black mb-6 flex items-center gap-2">
+              <span class="w-2 h-6 bg-[#8b5e34] rounded-full"></span>
+              خلاصه سفارش
+            </h2>
+
+            <div class="space-y-4 border-b border-[#5c3d1e]/10 pb-6">
+              <div class="flex justify-between items-center opacity-80">
+                <span>قیمت کالاها (<span id="items-count">۰</span>)</span>
+                <span id="subtotal-price">۰ تومان</span>
+              </div>
+              <div
+                class="flex justify-between items-center opacity-80 text-green-700"
+              >
+                <span>تخفیف</span>
+                <span>۱۵,۰۰۰- تومان</span>
+              </div>
+            </div>
+
+            <div
+              class="flex justify-between items-center py-6 text-xl sm:text-2xl font-black"
+            >
+              <span>جمع نهایی:</span>
+              <span id="total-price" class="text-[#8b5e34]">۵۲۰,۰۰۰ ت</span>
+            </div>
+
+            <div class="space-y-4">
+              <label class="block text-sm font-bold opacity-70 mb-1"
+                >روش پرداخت را انتخاب کنید:</label
+              >
+              <select
+                class="w-full p-4 bg-white/80 border-none rounded-2xl shadow-sm focus:ring-2 focus:ring-[#8b5e34] transition-all outline-none appearance-none cursor-pointer"
+              >
+                <option>💳 پرداخت آنلاین (شتاب)</option>
+                <option>🏠 پرداخت در محل</option>
+              </select>
+            </div>
+
+            <button
+              class="mt-8 w-full bg-[#8b5e34] hover:bg-[#5c3d1e] text-white py-4 px-6 rounded-2xl text-lg font-bold shadow-lg shadow-[#8b5e34]/30 active:scale-[0.98] transition-all duration-300"
+            >
+              تکمیل و پرداخت نهایی
+            </button>
+
+            <p class="mt-4 text-center text-xs opacity-50">
+              ضمانت بازگشت وجه تا ۷ روز
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <script src="cart.js"></script>
+  </body>
+</html>
